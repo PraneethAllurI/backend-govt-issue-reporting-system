@@ -11,14 +11,5 @@
         "source": "/api(.*)", 
         "destination": "/server.js" 
       }
-    ],
-    "env": {
-        "MONGO_URI": "@mongo_uri",
-        "JWT_SECRET": "@jwt_secret",
-        "CLOUDINARY_URL": "@cloudinary_url",
-        "REFRESH_TOKEN_SECRET": "@refresh_token_secret",
-        "CLOUDINARY_CLOUD_NAME": "@CLOUDINARY_CLOUD_NAME",
-        "CLOUDINARY_API_KEY": "@CLOUDINARY_API_KEY",
-        "CLOUDINARY_API_SECRET": "@CLOUDINARY_API_SECRET"
-      }
+    ]
   }
