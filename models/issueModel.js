@@ -7,7 +7,7 @@ const issueSchema = new mongoose.Schema({
   description: { type: String, required: true },
   category: { type: String, required: true },
   image: { type: String },
-  location: { type: { type: String, default: 'Point' }, coordinates: [Number] },
+  location: { type: String, default: 'somewhere on earth' },
   status: { type: String, default: 'Reported' },
   createdAt: { type: Date, default: Date.now },
 

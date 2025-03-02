@@ -7,7 +7,7 @@ exports.createIssue = async (req, res) => {
   const { title, description, category, location, } =
     req.body;
     const { user_id, username} = req.user;
-    if (!title || !description || !category || !user_id) {
+    if (!title || !description || !category || !user_id ||!location) {
       return res.status(400).json({ error: 'All fields are required' });
     }
     const existingIssue = await Issue.findOne({ 
@@ -25,17 +25,6 @@ exports.createIssue = async (req, res) => {
         return res.status(500).json({ error: 'Image upload failed' }); // Send response if image upload fails
       })
     : null; // Upload image to Cloudinary if exists
-  const coordinates = location ? [location.longitude, location.latitude] : [162.62, 6.0];
-
-  // Get coordinates using Google Maps API (latitude and longitude)
-  //   let coordinates = [];
-  //   if (location) {
-  //     try {
-  //       coordinates = await getCoordinates(location); // Fetch coordinates using Google Maps API
-  //     } catch (error) {
-  //       return res.status(500).json({ error: 'Error getting location coordinates.' });
-  //     }
-  //   }
 
   try {
     const newIssue = new Issue({
@@ -44,10 +33,7 @@ exports.createIssue = async (req, res) => {
       title,
       description,
       category,
-      location: {
-        type: "Point",
-        coordinates: coordinates, // Store coordinates (longitude, latitude)
-      },
+      location,
       image, // Store image URL if uploaded
     });
 
